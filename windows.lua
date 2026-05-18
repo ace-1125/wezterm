@@ -1,5 +1,12 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
+
+-- Machine-local settings
+local machine = {
+  background_image = wezterm.home_dir .. "/Pictures/Backgrounds/terminal-background-d20.png",
+  default_shell = { "powershell.exe", "-NoLogo" },
+}
+
 local function clean_title(title)
   return title:gsub("%.exe$", "")
 end
@@ -159,7 +166,7 @@ config.window_decorations = "RESIZE"
 config.background = {
   {
     source = {
-      File = "C:/Users/User/Pictures/Backgrounds/terminal-background-d20.png",
+      File = machine.background_image,
     },
     width = "Cover",
     height = "Cover",
@@ -172,11 +179,10 @@ config.background = {
 config.launch_menu = {
   {
     label = "PowerShell",
-    args = { "powershell.exe", "-NoLogo" },
+    args = machine.default_shell,
   },
 }
 
-config.default_prog = { "powershell.exe", "-NoLogo" }
+config.default_prog = machine.default_shell
 
 return config
-
