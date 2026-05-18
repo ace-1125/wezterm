@@ -5,7 +5,8 @@ Small source-of-truth repo for my WezTerm configs across machines.
 ## Files
 
 - `windows.lua` — known-good Windows config
-- `linux.lua` — future Linux config, if/when the Linux setup deserves its own file
+- `linux.lua` — known-good Linux config
+- `bootstrap-linux.sh` — symlink helper for Linux installs
 
 The repo intentionally keeps complete OS-specific configs rather than forcing everything through one abstraction layer. The files are small, and the machines have meaningfully different
 needs.
@@ -41,6 +42,29 @@ local machine = {
 
 `wezterm.home_dir` keeps paths rooted at the current user's home directory, so the config does not need a hard-coded `C:/Users/<name>` prefix. In practice, most Windows machines should only need the relative background path adjusted if their local file layout differs.
 
+## Current Linux config
+
+`linux.lua` keeps the same broad behavior as the Windows config, but uses Linux-local defaults:
+
+- Bash is the default local shell
+- wallpaper defaults to `~/wallpapers/terminal-background-d20.png`
+- Caskaydia Cove Nerd Font at `16.5`
+- larger scrollback (`10000`)
+- `enable_wayland = false` is kept explicit for the current Arch setup
+
+The same tab controls, battery indicator, QuickSelect binding, and CSI-u key encoding are preserved across platforms.
+
+### Machine-local settings
+
+The `machine` table near the top of `linux.lua` is the intended place for per-client edits:
+
+```lua
+local machine = {
+  background_image = wezterm.home_dir .. "/wallpapers/terminal-background-d20.png",
+  default_shell = { "bash" },
+}
+```
+
 ## Install
 
 ### Windows
@@ -55,11 +79,19 @@ Before or after copying, review the `machine` table at the top of the file for a
 
 ### Linux
 
-When a Linux config exists, copy or symlink it to:
+Run:
+
+```bash
+./bootstrap-linux.sh
+```
+
+This creates or updates:
 
 ```text
 ~/.wezterm.lua
 ```
+
+as a symlink to `linux.lua`. If a real config file already exists there, the script leaves it alone and tells you to move it first.
 
 ## Philosophy
 
