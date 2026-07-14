@@ -67,6 +67,7 @@ config.keys = {
   { key = "Enter", mods = "ALT", action = act.ToggleFullScreen },
   { key = "Enter", mods = "ALT|SHIFT", action = act.EmitEvent("toggle-decorations") },
   { key = "b", mods = "ALT|SHIFT", action = act.EmitEvent("toggle-tab-bar") },
+  { key = "Space", mods = "SHIFT", action = act.SendString(" ") },
   { key = "Space", mods = "ALT|SHIFT", action = act.QuickSelect },
   {
     key = "n",
@@ -141,7 +142,7 @@ config.show_new_tab_button_in_tab_bar = false
 config.enable_csi_u_key_encoding = true
 
 config.font = wezterm.font("Caskaydia Cove Nerd Font")
-config.font_size = 16.5
+config.font_size = 15.5
 
 config.color_scheme = "Tokyo Night Moon"
 config.scrollback_lines = 10000

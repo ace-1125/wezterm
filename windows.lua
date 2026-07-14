@@ -66,6 +66,7 @@ config.keys = {
   { key = "Enter", mods = "ALT", action = act.ToggleFullScreen },
   { key = "Enter", mods = "ALT|SHIFT", action = act.EmitEvent("toggle-decorations") },
   { key = "b", mods = "ALT|SHIFT", action = act.EmitEvent("toggle-tab-bar") },
+  { key = "Space", mods = "SHIFT", action = act.SendString(" ") },
   { key = "Space", mods = "ALT|SHIFT", action = act.QuickSelect },
   {
     key = "n",
